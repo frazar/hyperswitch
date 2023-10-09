@@ -27,6 +27,7 @@ pub struct NexinetsPaymentsRequest {
     payment: Option<NexinetsPaymentDetails>,
     #[serde(rename = "async")]
     nexinets_async: NexinetsAsyncDetails,
+    merchant_order_id: Option<String>,
 }
 
 #[derive(Debug, Serialize, Default)]
@@ -179,6 +180,7 @@ impl TryFrom<&types::PaymentsAuthorizeRouterData> for NexinetsPaymentsRequest {
             product,
             payment,
             nexinets_async,
+            merchant_order_id: Some(item.connector_request_reference_id.clone())
         })
     }
 }
